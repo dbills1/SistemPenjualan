@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.2100000000000024"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="no_wo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     wo.`no_wo` AS wo_no_wo,
+     wo.`tgl_wo` AS wo_tgl_wo,
+     wo.`keluhan` AS wo_keluhan,
+     wo.`jarak_tempuh` AS wo_jarak_tempuh,
+     wo.`plat_motor` AS wo_plat_motor,
+     wo.`kd_mekanik` AS wo_kd_mekanik,
+     detil_wo.`no_wo` AS detil_wo_no_wo,
+     detil_wo.`kd_service` AS detil_wo_kd_service,
+     detil_wo.`harga_service` AS detil_wo_harga_service,
+     motor.`kd_motor` AS motor_kd_motor,
+     motor.`plat_motor` AS motor_plat_motor,
+     motor.`merk` AS motor_merk,
+     motor.`warna` AS motor_warna,
+     motor.`tahun` AS motor_tahun,
+     motor.`nama_pemilik` AS motor_nama_pemilik,
+     motor.`alamat` AS motor_alamat,
+     motor.`no_telp` AS motor_no_telp,
+     mekanik.`kd_mekanik` AS mekanik_kd_mekanik,
+     mekanik.`nama_mekanik` AS mekanik_nama_mekanik,
+     mekanik.`alamat` AS mekanik_alamat,
+     mekanik.`no_telp` AS mekanik_no_telp,
+     service.`kd_service` AS service_kd_service,
+     service.`nama_service` AS service_nama_service,
+     service.`harga_service` AS service_harga_service
+FROM
+     `wo` wo INNER JOIN `motor` motor ON wo.`plat_motor` = motor.`plat_motor`
+     INNER JOIN `detil_wo` detil_wo ON wo.`no_wo` = detil_wo.`no_wo`
+     INNER JOIN `mekanik` mekanik ON wo.`kd_mekanik` = mekanik.`kd_mekanik`
+     INNER JOIN `service` service ON detil_wo.`kd_service` = service.`kd_service`
+WHERE
+     wo.`no_wo` = $P{no_wo}]]>
+	</queryString>
+	<field name="wo_no_wo" class="java.lang.String"/>
+	<field name="wo_tgl_wo" class="java.sql.Date"/>
+	<field name="wo_keluhan" class="java.lang.String"/>
+	<field name="wo_jarak_tempuh" class="java.lang.Integer"/>
+	<field name="wo_plat_motor" class="java.lang.String"/>
+	<field name="wo_kd_mekanik" class="java.lang.String"/>
+	<field name="detil_wo_no_wo" class="java.lang.String"/>
+	<field name="detil_wo_kd_service" class="java.lang.String"/>
+	<field name="detil_wo_harga_service" class="java.lang.Integer"/>
+	<field name="motor_kd_motor" class="java.lang.String"/>
+	<field name="motor_plat_motor" class="java.lang.String"/>
+	<field name="motor_merk" class="java.lang.String"/>
+	<field name="motor_warna" class="java.lang.String"/>
+	<field name="motor_tahun" class="java.lang.String"/>
+	<field name="motor_nama_pemilik" class="java.lang.String"/>
+	<field name="motor_alamat" class="java.lang.String"/>
+	<field name="motor_no_telp" class="java.lang.String"/>
+	<field name="mekanik_kd_mekanik" class="java.lang.String"/>
+	<field name="mekanik_nama_mekanik" class="java.lang.String"/>
+	<field name="mekanik_alamat" class="java.lang.String"/>
+	<field name="mekanik_no_telp" class="java.lang.String"/>
+	<field name="service_kd_service" class="java.lang.String"/>
+	<field name="service_nama_service" class="java.lang.String"/>
+	<field name="service_harga_service" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="1" y="0" width="81" height="79"/>
+				<imageExpression class="java.lang.String"><![CDATA["S:\\Net Beans Project\\SistemBK\\JMS\\kkpbengkel\\Jadi.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="221" y="27" width="116" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Work Order]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="221" y="47" width="116" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{wo_no_wo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="296" y="16" width="26" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="36" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[Plat Motor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="36" width="26" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="16" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tgl.WO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="16" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[a/n]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="36" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{wo_tgl_wo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="16" width="193" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{motor_nama_pemilik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="36" width="193" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{motor_plat_motor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="189" y="14" width="217" height="29"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="14" width="36" height="29"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="189" y="0" width="217" height="20"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{service_nama_service}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="0" width="36" height="20"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="153" splitType="Stretch">
+			<staticText>
+				<reportElement x="418" y="61" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Mekanik]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="397" y="133" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{mekanik_nama_mekanik}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

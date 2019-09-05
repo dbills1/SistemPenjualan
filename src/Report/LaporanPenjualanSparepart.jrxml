@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="0.826446280991736"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgl_awal" class="java.lang.String"/>
+	<parameter name="tgl_akhir" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     penjualan.`no_penjualan` AS penjualan_no_penjualan,
+     penjualan.`tgl_penjualan` AS penjualan_tgl_penjualan,
+     detil_penjualan.`no_penjualan` AS detil_penjualan_no_penjualan,
+     detil_penjualan.`kd_sparepart` AS detil_penjualan_kd_sparepart,
+     detil_penjualan.`jumlah_pesan` AS detil_penjualan_jumlah_pesan,
+     detil_penjualan.`harga_pesan` AS detil_penjualan_harga_pesan,
+     sparepart.`kd_sparepart` AS sparepart_kd_sparepart,
+     sparepart.`nama_sparepart` AS sparepart_nama_sparepart,
+     sparepart.`harga_sparepart` AS sparepart_harga_sparepart,
+     sparepart.`stok` AS sparepart_stok
+FROM
+     `detil_penjualan` detil_penjualan INNER JOIN `penjualan` penjualan ON detil_penjualan.`no_penjualan` = penjualan.`no_penjualan`
+     INNER JOIN `sparepart` sparepart ON detil_penjualan.`kd_sparepart` = sparepart.`kd_sparepart`
+WHERE penjualan.`tgl_penjualan` >= $P{tgl_awal} AND penjualan.`tgl_penjualan` <= $P{tgl_akhir}]]>
+	</queryString>
+	<field name="penjualan_no_penjualan" class="java.lang.String"/>
+	<field name="penjualan_tgl_penjualan" class="java.sql.Date"/>
+	<field name="detil_penjualan_no_penjualan" class="java.lang.String"/>
+	<field name="detil_penjualan_kd_sparepart" class="java.lang.String"/>
+	<field name="detil_penjualan_jumlah_pesan" class="java.lang.Integer"/>
+	<field name="detil_penjualan_harga_pesan" class="java.lang.Integer"/>
+	<field name="sparepart_kd_sparepart" class="java.lang.String"/>
+	<field name="sparepart_nama_sparepart" class="java.lang.String"/>
+	<field name="sparepart_harga_sparepart" class="java.lang.Integer"/>
+	<field name="sparepart_stok" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="28" width="252" height="29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Penjualan Sparepart]]></text>
+			</staticText>
+			<image>
+				<reportElement x="25" y="-2" width="80" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA["S:\\Net Beans Project\\SistemBK\\JMS\\kkpbengkel\\Jadi.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="80" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="181" y="57" width="43" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Periode]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="224" y="57" width="72" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl_awal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="57" width="25" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[s/d]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="57" width="75" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl_akhir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="102" y="0" width="30" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="0" width="100" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="0" width="127" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Sparepart]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="0" width="100" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pesanan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="102" y="0" width="30" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="100" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{penjualan_no_penjualan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="127" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sparepart_nama_sparepart}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="0" width="100" height="28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{detil_penjualan_jumlah_pesan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
